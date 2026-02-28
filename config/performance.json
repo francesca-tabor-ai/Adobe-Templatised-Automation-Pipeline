@@ -1,0 +1,8 @@
+{
+  "performanceDataPath": "output/performance/performance.csv",
+  "metricColumns": { "impressions": "impressions", "clicks": "clicks", "conversions": "conversions", "spend": "spend" },
+  "ctrThreshold": 0.01,
+  "conversionRateThreshold": 0.02,
+  "suppressBelowCtr": 0.005,
+  "fatigueDays": 30
+}

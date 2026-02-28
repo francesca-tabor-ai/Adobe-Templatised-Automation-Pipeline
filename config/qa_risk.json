@@ -1,0 +1,5 @@
+{
+  "requireDisclaimerInManifest": true,
+  "requirePreflightOk": true,
+  "blockOnAnyFailure": true
+}

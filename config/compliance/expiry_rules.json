@@ -1,0 +1,6 @@
+{
+  "requireStartDate": false,
+  "requireEndDate": false,
+  "maxRangeDays": 365,
+  "rejectPastEndDate": true
+}

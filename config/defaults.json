@@ -25,5 +25,10 @@
   },
   "assetBasePath": "assets",
   "productImageMap": {},
-  "backgroundImageMap": {}
+  "backgroundImageMap": {},
+  "audit": {
+    "dir": "output/audit",
+    "file": "audit.log",
+    "retentionDays": 90
+  }
 }

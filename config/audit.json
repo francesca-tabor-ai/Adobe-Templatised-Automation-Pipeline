@@ -1,0 +1,5 @@
+{
+  "dir": "output/audit",
+  "file": "audit.log",
+  "retentionDays": 90
+}

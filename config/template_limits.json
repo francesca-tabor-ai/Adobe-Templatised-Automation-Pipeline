@@ -1,0 +1,5 @@
+{
+  "headline": { "en": 60, "de": 50, "fr": 55 },
+  "subheadline": { "en": 120, "de": 100, "fr": 110 },
+  "cta": { "en": 20, "de": 18, "fr": 20 }
+}

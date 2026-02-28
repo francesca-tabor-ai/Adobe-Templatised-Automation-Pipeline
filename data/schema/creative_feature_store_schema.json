@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreativeFeatureStoreRecord",
+  "description": "Unified creative feature store record for CIF: variant attributes, template metadata, compliance variables, performance outcomes, temporal fields.",
+  "type": "object",
+  "required": ["variant_id", "market", "language", "channel", "ingested_at"],
+  "properties": {
+    "variant_id": { "type": "string", "description": "Unique identifier for this variant" },
+    "campaign_id": { "type": "string", "description": "Campaign identifier" },
+    "market": { "type": "string", "description": "Market code e.g. US, DE, FR" },
+    "language": { "type": "string", "description": "Language code" },
+    "channel": { "type": "string", "description": "Delivery channel e.g. print_a4, social_1_1" },
+    "size": { "type": "string" },
+    "aspect_ratio": { "type": "string" },
+    "headline": { "type": "string" },
+    "subheadline": { "type": "string" },
+    "cta": { "type": "string" },
+    "legal_disclaimer_id": { "type": "string" },
+    "product_image_id": { "type": "string" },
+    "background_image_id": { "type": "string" },
+    "compliance_version": { "type": "string" },
+    "approved": { "type": "boolean" },
+    "hypothesis_id": { "type": "string" },
+    "variable_changed": { "type": "string" },
+    "template_version": { "type": "string", "description": "Template version used for render" },
+    "dataset_version": { "type": "string", "description": "Variant dataset version" },
+    "app": { "type": "string", "enum": ["indesign", "photoshop", "aftereffects"], "description": "App that produced the asset" },
+    "engagement_metrics": {
+      "type": "object",
+      "description": "Placeholder for CTR, conversions, etc.; structure TBD by analytics",
+      "additionalProperties": true
+    },
+    "spend_allocation": { "type": "number", "description": "Spend or budget share for this variant" },
+    "approval_cycle_time": { "type": "number", "description": "Hours or days from submit to approval" },
+    "revision_frequency": { "type": "integer", "description": "Number of revision cycles" },
+    "compliance_exceptions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of compliance exceptions or flags"
+    },
+    "run_id": { "type": "string", "description": "Orchestrator run identifier" },
+    "ingested_at": { "type": "string", "format": "date-time", "description": "When this record was written to the feature store" }
+  }
+}

@@ -17,6 +17,14 @@ Minimum metadata for assets produced by the pipeline, for traceability and DAM i
 | created_by | string | e.g. "automation" |
 | created_at | string | ISO 8601 timestamp |
 
+## CGVIP required (audit traceability)
+
+| Field | Type | Description |
+|-------|------|-------------|
+| campaign_id | string | Campaign identifier (optional empty if not set) |
+| approval_timestamp | string | ISO 8601 timestamp of approval / run |
+| automation_agent_signature | string | e.g. `runId=run_YYYYMMDD_HHMMSS_fff` for traceability to audit log |
+
 ## Optional
 
 - **path**: Relative or absolute path to the exported file
@@ -39,10 +47,15 @@ The orchestrator can write a `.metadata.json` sidecar next to each asset (e.g. `
   "dataset_version": "2025-02-28",
   "compliance_version": "v1",
   "created_by": "automation",
-  "created_at": "2025-02-28T12:00:00Z"
+  "created_at": "2025-02-28T12:00:00Z",
+  "campaign_id": "CAMP001",
+  "approval_timestamp": "2025-02-28T12:00:00Z",
+  "automation_agent_signature": "runId=run_20250228_120000_000"
 }
 ```
 
 ## Generating metadata
 
 Use the optional script `orchestrator/scripts/generate_dam_metadata.js` (or run from orchestrator) to produce sidecar metadata from the last run's manifest(s) and config.
+
+**CGVIP options:** Pass `--run-id run_YYYYMMDD_HHMMSS_fff` to pull template/dataset version from `output/{runId}/job.json` and set `automation_agent_signature`. Use `--campaign-id` and `--approval-timestamp` to set those fields explicitly.

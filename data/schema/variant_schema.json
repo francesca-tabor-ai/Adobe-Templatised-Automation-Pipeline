@@ -6,6 +6,7 @@
   "required": ["variant_id", "market", "language", "channel"],
   "properties": {
     "variant_id": { "type": "string", "description": "Unique identifier for this variant" },
+    "campaign_id": { "type": "string", "description": "Campaign identifier (optional; CIF feature store)" },
     "market": { "type": "string", "description": "Market code e.g. US, DE, FR" },
     "language": { "type": "string", "description": "Language code e.g. en, de, fr" },
     "channel": { "type": "string", "description": "Delivery channel e.g. print_a4, social_1_1" },

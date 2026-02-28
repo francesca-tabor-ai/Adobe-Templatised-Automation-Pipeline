@@ -1,0 +1,12 @@
+{
+  "disclaimer_1": {
+    "text": "Sample disclaimer for US.",
+    "markets": ["US"],
+    "languages": ["en"]
+  },
+  "disclaimer_2": {
+    "text": "Sample disclaimer for DE.",
+    "markets": ["DE"],
+    "languages": ["de", "en"]
+  }
+}

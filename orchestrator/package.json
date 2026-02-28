@@ -7,7 +7,9 @@
     "run": "node run_pipeline.js",
     "indesign": "node run_pipeline.js --path indesign",
     "photoshop": "node run_pipeline.js --path photoshop",
-    "aftereffects": "node run_pipeline.js --path aftereffects"
+    "aftereffects": "node run_pipeline.js --path aftereffects",
+    "cgvip": "node run_cgvip_pipeline.js",
+    "test:agents": "node agents/__tests__/contract.test.js && node agents/__tests__/audit.test.js && node agents/__tests__/dataset_governance.test.js && node agents/__tests__/compliance_intelligence.test.js && node agents/__tests__/template_compatibility.test.js"
   },
   "bin": {
     "run-pipeline": "./run_pipeline.js"

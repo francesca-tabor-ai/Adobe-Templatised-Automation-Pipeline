@@ -1,0 +1,5 @@
+{
+  "US": ["claim_1", "claim_2"],
+  "DE": ["claim_1"],
+  "FR": ["claim_1", "claim_2"]
+}

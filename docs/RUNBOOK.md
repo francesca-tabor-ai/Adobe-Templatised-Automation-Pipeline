@@ -80,13 +80,68 @@ You do not need Node to run the Adobe scripts; the orchestrator only filters dat
 
 ---
 
-## 7. DAM metadata (optional)
+## 7. CGVIP pipeline (governed run)
+
+The **CGVIP** pipeline runs agents in order (Dataset Governance → Compliance → Template Compatibility → Render), writes an audit log, and then prepares the same Adobe run as above.
+
+**Run the CGVIP pipeline:**
+
+```bash
+cd orchestrator
+node run_cgvip_pipeline.js --path indesign [--dataset path] [--approved-only]
+```
+
+Replace `indesign` with `photoshop` or `aftereffects`. This will:
+
+- Load the dataset and run **Dataset Governance** (schema + optional conflict rules), **Compliance Intelligence** (claim–market, disclaimer library, expiry), and **Template Compatibility** (character limits).
+- Write a staged dataset under `output/{app}/`, a **job manifest** under `output/run_{runId}/job.json`, and **audit entries** to `output/audit/audit.log`.
+- Print the same “run this script in Adobe” instructions. Run the .jsx as in section 5.
+
+**Post-render QA gate:** After running the Adobe script, run:
+
+```bash
+node run_cgvip_pipeline.js --post-render [--path indesign]
+```
+
+This aggregates QA and runs the **QA & Risk** agent; results are appended to the audit log.
+
+**Performance intelligence (Phase 3):** To generate performance insights and recommendations:
+
+```bash
+node run_cgvip_pipeline.js --performance [--suppress-from-performance]
+```
+
+Place performance data at the path in `config/performance.json` (default `output/performance/performance.csv`) with columns such as `variant_id`, `impressions`, `clicks`, `conversions`, `spend`. Reports are written to `output/performance/performance_report.json` and `output/performance/recommendations.json`.
+
+**Compliance rules (Legal-editable):** Edit JSON under `config/compliance/` without code changes:
+
+- `config/compliance/claim_market.json` — which claim IDs are allowed per market.
+- `config/compliance/disclaimer_library.json` — disclaimer id → text, markets, languages.
+- `config/compliance/expiry_rules.json` — date range and expiry rules.
+
+**DAM metadata with run ID:** To attach a run to DAM metadata for traceability:
+
+```bash
+node scripts/generate_dam_metadata.js --run-id run_YYYYMMDD_HHMMSS_fff [--campaign-id CAMP001]
+```
+
+See [DAM_METADATA.md](DAM_METADATA.md) for the full schema including `campaign_id`, `approval_timestamp`, `automation_agent_signature`.
+
+---
+
+## 8. DAM metadata (optional)
 
 To generate sidecar metadata for DAM import:
 
 ```bash
 cd orchestrator
 node scripts/generate_dam_metadata.js
+```
+
+With optional CGVIP args:
+
+```bash
+node scripts/generate_dam_metadata.js --run-id run_YYYYMMDD_HHMMSS_fff [--campaign-id CAMP001] [--approval-timestamp 2025-02-28T12:00:00Z]
 ```
 
 This creates `output/{app}/{variant_id}.metadata.json` per entry in the manifest. See [DAM_METADATA.md](DAM_METADATA.md) for the schema.
@@ -111,7 +166,8 @@ This creates `output/{app}/{variant_id}.metadata.json` per entry in the manifest
 ## Quick reference
 
 - **Data**: `data/sample/variants.csv` (InDesign, AE), `data/sample/variants.json` (Photoshop, AE).
-- **Config**: `config/defaults.json`, `config/channels.json`.
+- **Config**: `config/defaults.json`, `config/channels.json`, `config/compliance/*.json` (CGVIP), `config/template_limits.json`, `config/performance.json`.
 - **Scripts**: `scripts/indesign/run_merge.jsx`, `scripts/photoshop/run_batch.jsx`, `scripts/aftereffects/run_render.jsx`.
-- **Output**: `output/{app}/` (assets + `manifest.json`).
+- **Output**: `output/{app}/` (assets + `manifest.json`), `output/audit/audit.log` (CGVIP), `output/run_{runId}/job.json` (CGVIP).
 - **QA**: `node orchestrator/run_pipeline.js --qa-only` → `output/qa_report.json`, `output/qa_failures.txt`.
+- **CGVIP**: `node orchestrator/run_cgvip_pipeline.js --path indesign|photoshop|aftereffects` (full governed run); `--post-render` (QA gate); `--performance` (insights + recommendations).
