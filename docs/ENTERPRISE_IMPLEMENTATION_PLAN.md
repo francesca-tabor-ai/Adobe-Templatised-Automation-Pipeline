@@ -341,3 +341,7 @@ It transforms creative from a **distributed craft operation** into a **governed 
 
 *Document owner: Program Lead / CMO Office*  
 *Next review: Post Phase 0 sign-off*
+
+---
+
+**Related:** For how this program **operates within the wider enterprise** (org model, workflows, integration with Legal/Regional/Procurement/IT, cultural shift), see [ENTERPRISE_DEPLOYMENT_AND_OPERATING_MODEL.md](ENTERPRISE_DEPLOYMENT_AND_OPERATING_MODEL.md).

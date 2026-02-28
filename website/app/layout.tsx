@@ -3,6 +3,7 @@ import { Source_Sans_3 } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import DebugRouteLogger from '@/components/DebugRouteLogger'
 
 const sourceSans = Source_Sans_3({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={sourceSans.variable}>
       <body className="min-h-screen flex flex-col bg-paper text-ink">
+        <DebugRouteLogger />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
