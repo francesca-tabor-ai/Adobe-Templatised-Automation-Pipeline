@@ -1,0 +1,16 @@
+{
+  "channels": {
+    "print_a4": { "width": 595, "height": 842, "unit": "pt" },
+    "social_1_1": { "width": 1080, "height": 1080, "unit": "px" },
+    "social_16_9": { "width": 1920, "height": 1080, "unit": "px" },
+    "social_9_16": { "width": 1080, "height": 1920, "unit": "px" }
+  },
+  "aftereffects": {
+    "comps": {
+      "16:9": "Comp_16x9",
+      "1:1": "Comp_1x1",
+      "9:16": "Comp_9x16"
+    },
+    "renderPreset": "H.264"
+  }
+}

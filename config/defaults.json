@@ -1,0 +1,29 @@
+{
+  "paths": {
+    "dataDir": "data/sample",
+    "templatesDir": "templates",
+    "outputDir": "output"
+  },
+  "exportPresets": {
+    "indesign": {
+      "pdf": "Press Quality",
+      "png": "High Resolution"
+    },
+    "photoshop": {
+      "png": { "quality": 10 },
+      "jpeg": { "quality": 12 }
+    },
+    "aftereffects": {
+      "codec": "H.264",
+      "bitrate": "10 Mbps"
+    }
+  },
+  "qaRules": {
+    "requireDisclaimer": true,
+    "checkOversetText": true,
+    "checkMissingAssets": true
+  },
+  "assetBasePath": "assets",
+  "productImageMap": {},
+  "backgroundImageMap": {}
+}

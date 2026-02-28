@@ -1,0 +1,15 @@
+{
+  "name": "adobe-templatised-orchestrator",
+  "version": "1.0.0",
+  "description": "CLI to filter variant data and run Adobe pipeline steps",
+  "main": "run_pipeline.js",
+  "scripts": {
+    "run": "node run_pipeline.js",
+    "indesign": "node run_pipeline.js --path indesign",
+    "photoshop": "node run_pipeline.js --path photoshop",
+    "aftereffects": "node run_pipeline.js --path aftereffects"
+  },
+  "bin": {
+    "run-pipeline": "./run_pipeline.js"
+  }
+}

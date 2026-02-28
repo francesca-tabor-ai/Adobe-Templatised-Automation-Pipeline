@@ -1,0 +1,5 @@
+variant_id,market,language,channel,size,aspect_ratio,headline,subheadline,cta,legal_disclaimer_id,product_image_id,background_image_id,compliance_version,approved
+V001,US,en,social_1_1,1080x1080,1:1,Summer Sale,Save up to 30% today,Shop Now,DISCLAIMER_US_001,prod_001,bg_001,v1,true
+V002,US,en,social_16_9,1920x1080,16:9,Summer Sale,Save up to 30% today,Shop Now,DISCLAIMER_US_001,prod_001,bg_001,v1,true
+V003,DE,de,social_1_1,1080x1080,1:1,Sommerverkauf,Bis zu 30% sparen,Jetzt einkaufen,DISCLAIMER_DE_001,prod_001,bg_002,v1,true
+V004,FR,fr,print_a4,A4,,Soldes d'été,Économisez jusqu'à 30%,Achetez maintenant,DISCLAIMER_FR_001,prod_002,bg_001,v1,false

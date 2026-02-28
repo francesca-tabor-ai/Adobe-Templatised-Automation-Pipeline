@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Variant",
+  "description": "Single variant record for templatized creative automation",
+  "type": "object",
+  "required": ["variant_id", "market", "language", "channel"],
+  "properties": {
+    "variant_id": { "type": "string", "description": "Unique identifier for this variant" },
+    "market": { "type": "string", "description": "Market code e.g. US, DE, FR" },
+    "language": { "type": "string", "description": "Language code e.g. en, de, fr" },
+    "channel": { "type": "string", "description": "Delivery channel e.g. print_a4, social_1_1" },
+    "size": { "type": "string", "description": "Output size label" },
+    "aspect_ratio": { "type": "string", "description": "e.g. 16:9, 1:1, 9:16" },
+    "headline": { "type": "string" },
+    "subheadline": { "type": "string" },
+    "cta": { "type": "string" },
+    "legal_disclaimer_id": { "type": "string" },
+    "product_image_id": { "type": "string" },
+    "background_image_id": { "type": "string" },
+    "compliance_version": { "type": "string" },
+    "approved": { "type": "boolean", "default": false },
+    "start_date": { "type": "string", "format": "date" },
+    "end_date": { "type": "string", "format": "date" },
+    "hypothesis_id": { "type": "string" },
+    "variable_changed": { "type": "string" }
+  }
+}

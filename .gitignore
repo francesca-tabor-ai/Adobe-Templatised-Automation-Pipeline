@@ -1,0 +1,19 @@
+# Generated outputs and manifests
+output/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Temp and staging
+*.tmp
+*.temp
+staging/
