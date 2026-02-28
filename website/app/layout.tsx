@@ -4,10 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: {
-    default: 'CGVIP — Creative Governance & Variant Intelligence Platform',
-    template: '%s | CGVIP',
-  },
+  title: 'CGVIP — Creative Governance & Variant Intelligence Platform',
   description: 'Governed, AI-orchestrated creative automation for regulated enterprises. Orchestrates Adobe; does not replace it.',
 }
 
