@@ -3,24 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #0f172a;
-  --background: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #f8fafc;
-    --background: #0f172a;
-  }
+  --ink: #0a0a0b;
+  --ink-muted: #52525b;
+  --ink-subtle: #71717a;
+  --paper: #ffffff;
+  --paper-subdued: #fafafa;
+  --paper-border: #e4e4e7;
+  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 35%, #ec4899 70%, #f97316 100%);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--ink);
+  background: var(--paper);
+  @apply font-sans antialiased;
+  line-height: 1.7;
+}
+
+/* Headlines: confident, often sentence-case — override line-height for display */
+h1, h2, h3 {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* Generous line height for body blocks */
+.prose-style {
+  line-height: 1.75;
+}
+
+/* Signature gradient — used sparingly for hero / highlights */
+.gradient-accent-bg {
+  background: var(--gradient-accent);
+}
+
+.gradient-accent-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle gradient strip for hero */
+.gradient-accent-strip {
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
 }
 
 /* Focus visible for accessibility */
 a:focus-visible,
 button:focus-visible {
-  @apply outline-2 outline-offset-2 outline-slate-600;
+  @apply outline-2 outline-offset-2 outline-ink-muted;
 }

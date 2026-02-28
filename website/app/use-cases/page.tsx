@@ -36,38 +36,38 @@ const kpis = [
 export default function UseCasesPage() {
   return (
     <>
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+        <h1 className="text-4xl font-bold text-ink">
           Use cases
         </h1>
-        <p className="mt-4 max-w-3xl text-lg text-slate-600 dark:text-slate-400">
+        <p className="mt-5 max-w-3xl text-lg text-ink-muted leading-relaxed">
           Regulated enterprises use CGVIP to turn creative production into a governed, intelligent, measurable, and industrialized system—reducing regulatory exposure while increasing operational velocity.
         </p>
 
         {/* Problems */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-ink">
             Problems we address
           </h2>
-          <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
-            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
-              <thead className="bg-slate-50 dark:bg-slate-800/50">
+          <div className="mt-6 overflow-hidden rounded-card border border-paper-border">
+            <table className="min-w-full divide-y divide-paper-border">
+              <thead className="bg-paper-subdued">
                 <tr>
-                  <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <th scope="col" className="px-5 py-3.5 text-left text-sm font-semibold text-ink">
                     Problem
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <th scope="col" className="px-5 py-3.5 text-left text-sm font-semibold text-ink">
                     Description
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              <tbody className="divide-y divide-paper-border bg-paper">
                 {problems.map(({ problem, description }) => (
-                  <tr key={problem} className="bg-white dark:bg-slate-800/30">
-                    <td className="px-4 py-3 text-sm font-medium text-slate-900 dark:text-slate-100">
+                  <tr key={problem}>
+                    <td className="px-5 py-3.5 text-sm font-medium text-ink">
                       {problem}
                     </td>
-                    <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
+                    <td className="px-5 py-3.5 text-sm text-ink-muted leading-relaxed">
                       {description}
                     </td>
                   </tr>
@@ -78,32 +78,32 @@ export default function UseCasesPage() {
         </section>
 
         {/* Before / After */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-ink">
             Cultural impact: before and after
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-ink-muted leading-relaxed">
             Creative becomes: Governed, Intelligent, Measurable, Industrialized.
           </p>
-          <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
-            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
-              <thead className="bg-slate-50 dark:bg-slate-800/50">
+          <div className="mt-6 overflow-hidden rounded-card border border-paper-border">
+            <table className="min-w-full divide-y divide-paper-border">
+              <thead className="bg-paper-subdued">
                 <tr>
-                  <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <th scope="col" className="px-5 py-3.5 text-left text-sm font-semibold text-ink">
                     Before
                   </th>
-                  <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <th scope="col" className="px-5 py-3.5 text-left text-sm font-semibold text-ink">
                     After
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              <tbody className="divide-y divide-paper-border bg-paper">
                 {beforeAfter.map(({ before, after }) => (
-                  <tr key={before} className="bg-white dark:bg-slate-800/30">
-                    <td className="px-4 py-3 text-sm text-slate-600 dark:text-slate-400">
+                  <tr key={before}>
+                    <td className="px-5 py-3.5 text-sm text-ink-muted leading-relaxed">
                       {before}
                     </td>
-                    <td className="px-4 py-3 text-sm font-medium text-slate-900 dark:text-slate-100">
+                    <td className="px-5 py-3.5 text-sm font-medium text-ink">
                       {after}
                     </td>
                   </tr>
@@ -114,27 +114,27 @@ export default function UseCasesPage() {
         </section>
 
         {/* KPIs */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-ink">
             KPIs for success
           </h2>
           <ul className="mt-6 space-y-3">
             {kpis.map((kpi) => (
               <li
                 key={kpi}
-                className="flex items-center gap-3 rounded-md border border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-800/50"
+                className="flex items-center gap-3 rounded-ui border border-paper-border bg-paper px-5 py-3.5 shadow-soft"
               >
-                <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" aria-hidden />
-                <span className="text-slate-800 dark:text-slate-200">{kpi}</span>
+                <span className="h-2 w-2 shrink-0 rounded-full bg-violet-500" aria-hidden />
+                <span className="text-ink leading-relaxed">{kpi}</span>
               </li>
             ))}
           </ul>
         </section>
 
-        <div className="mt-14">
+        <div className="mt-16">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-md bg-slate-900 px-6 py-3 text-base font-semibold text-white hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+            className="inline-flex items-center justify-center rounded-ui bg-ink px-6 py-3.5 text-base font-semibold text-paper shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted"
           >
             Get in touch
           </Link>

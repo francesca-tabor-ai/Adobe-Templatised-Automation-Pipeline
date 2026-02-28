@@ -17,25 +17,25 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
+    <header className="sticky top-0 z-50 border-b border-paper-border bg-paper/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <Link
           href="/"
-          className="text-xl font-semibold text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 dark:text-slate-100"
+          className="text-xl font-bold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted"
         >
           CGVIP
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 ${
+              className={`rounded-ui px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted ${
                 pathname === href
-                  ? 'text-slate-900 dark:text-slate-100'
-                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
+                  ? 'bg-paper-subdued text-ink'
+                  : 'text-ink-muted hover:bg-paper-subdued hover:text-ink'
               }`}
             >
               {label}
@@ -47,7 +47,7 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setMenuOpen((o) => !o)}
-          className="flex h-10 w-10 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 dark:text-slate-400 dark:hover:bg-slate-800 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-ui text-ink-muted hover:bg-paper-subdued hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted md:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
         >
@@ -65,20 +65,18 @@ export default function Header() {
       {/* Mobile nav */}
       <div
         id="mobile-menu"
-        className={`border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 md:hidden ${
-          menuOpen ? 'block' : 'hidden'
-        }`}
+        className={`border-t border-paper-border bg-paper md:hidden ${menuOpen ? 'block' : 'hidden'}`}
       >
-        <nav className="flex flex-col gap-0 px-4 py-4" aria-label="Main">
+        <nav className="flex flex-col gap-0.5 px-4 py-4" aria-label="Main">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className={`rounded-md px-3 py-2 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 ${
+              className={`rounded-ui px-3 py-2.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted ${
                 pathname === href
-                  ? 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100'
+                  ? 'bg-paper-subdued text-ink'
+                  : 'text-ink-muted hover:bg-paper-subdued hover:text-ink'
               }`}
             >
               {label}

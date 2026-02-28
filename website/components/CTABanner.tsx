@@ -18,23 +18,26 @@ export default function CTABanner({
   secondaryLabel = 'See how it works',
 }: CTABannerProps) {
   return (
-    <section className="bg-slate-900 px-4 py-16 text-white dark:bg-slate-950 sm:px-6">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl">{title}</h2>
+    <section className="relative overflow-hidden bg-ink px-4 py-20 sm:px-6">
+      {/* Subtle gradient accent — guides attention, doesn't overwhelm */}
+      <div className="absolute inset-0 bg-accent-gradient-subtle opacity-60" aria-hidden />
+      <div className="absolute left-0 top-0 h-full w-1 gradient-accent-bg" aria-hidden />
+      <div className="relative mx-auto max-w-3xl text-center">
+        <h2 className="text-2xl font-bold text-paper sm:text-3xl">{title}</h2>
         {description && (
-          <p className="mt-4 text-slate-300">{description}</p>
+          <p className="mt-5 text-paper/80 leading-relaxed">{description}</p>
         )}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href={primaryHref}
-            className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex items-center justify-center rounded-ui bg-paper px-6 py-3 text-base font-semibold text-ink shadow-soft hover:bg-paper-subdued focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
           >
             {primaryLabel}
           </Link>
           {secondaryHref && (
             <Link
               href={secondaryHref}
-              className="inline-flex items-center justify-center rounded-md border border-slate-600 bg-transparent px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="inline-flex items-center justify-center rounded-ui border border-white/30 bg-transparent px-6 py-3 text-base font-semibold text-paper hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
             >
               {secondaryLabel}
             </Link>

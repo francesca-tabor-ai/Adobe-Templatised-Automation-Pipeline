@@ -27,6 +27,13 @@ Output is in `out/`. The site is configured for static export (`output: 'export'
 - **/resources** — Doc links (update `href` values to your repo or docs URL)
 - **/contact** — Contact CTA (mailto; replace with your email or form link)
 
+## Design system
+
+- **Typography**: Source Sans 3 (humanist sans-serif), high legibility; headlines bold and confident, body with generous line height (`leading-relaxed`).
+- **Colour**: Near-black (`ink`) for text, white (`paper`) background, cool greys for UI and secondary text; signature gradient (purple → blue → pink → orange) used sparingly in hero and CTA.
+- **Components**: Rounded UI (`rounded-ui` 0.75rem, `rounded-card` 1rem), soft shadows (`shadow-soft`, `shadow-soft-lg`), clear hierarchy and whitespace.
+- **Vibe**: Developer-first, calm, confident; “serious but not intimidating.”
+
 ## Customization
 
 - **Resources**: Edit `app/resources/page.tsx` and the doc links in `components/Footer.tsx` to point to your repository (e.g. GitHub `docs/` or raw URLs).

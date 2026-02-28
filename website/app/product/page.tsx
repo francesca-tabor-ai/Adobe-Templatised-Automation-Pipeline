@@ -62,31 +62,31 @@ const flowSteps = [
 export default function ProductPage() {
   return (
     <>
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+        <h1 className="text-4xl font-bold text-ink">
           Product
         </h1>
-        <p className="mt-4 max-w-3xl text-lg text-slate-600 dark:text-slate-400">
+        <p className="mt-5 max-w-3xl text-lg text-ink-muted leading-relaxed">
           CGVIP sits between marketing teams, legal & compliance, and Adobe creative templates—orchestrating and governing production. It does not replace Adobe; it orchestrates and governs it. Enterprise DAM and performance analytics integrate into the loop.
         </p>
 
         {/* System flow */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-ink">
             System flow
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-ink-muted leading-relaxed">
             Every step generates: timestamp, version ID, agent reasoning log, approval state.
           </p>
           <div className="mt-6 flex flex-col gap-2">
             {flowSteps.map((step, i) => (
               <div key={step} className="flex items-center gap-4">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-slate-300 bg-slate-50 text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-ui border border-paper-border bg-paper-subdued text-sm font-medium text-ink-muted tabular-nums">
                   {i + 1}
                 </div>
-                <span className="text-slate-800 dark:text-slate-200">{step}</span>
+                <span className="text-ink">{step}</span>
                 {i < flowSteps.length - 1 && (
-                  <span className="text-slate-400 dark:text-slate-500" aria-hidden>
+                  <span className="text-ink-subtle" aria-hidden>
                     ↓
                   </span>
                 )}
@@ -96,14 +96,14 @@ export default function ProductPage() {
         </section>
 
         {/* Seven agents */}
-        <section className="mt-14">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        <section className="mt-16">
+          <h2 className="text-2xl font-bold text-ink">
             Multi-agent architecture
           </h2>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-ink-muted leading-relaxed">
             Each agent has a defined mandate, authority boundary, and explainable reasoning trail. No single monolithic AI.
           </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {agents.map((agent, index) => (
               <AgentCard
                 key={agent.name}
@@ -116,10 +116,10 @@ export default function ProductPage() {
           </div>
         </section>
 
-        <div className="mt-14">
+        <div className="mt-16">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-md bg-slate-900 px-6 py-3 text-base font-semibold text-white hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+            className="inline-flex items-center justify-center rounded-ui bg-ink px-6 py-3.5 text-base font-semibold text-paper shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted"
           >
             Get in touch
           </Link>
