@@ -17,7 +17,9 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 ```
 
-Output is in `out/`. The site is configured for static export (`output: 'export'` in `next.config.js`), so it can be hosted on any static host (e.g. GitHub Pages, Netlify, Vercel).
+Output is in `out/`. The site uses `trailingSlash: true` so each route is emitted as `route/index.html`, which avoids 404s on direct URLs and refresh when deployed (e.g. Vercel, Netlify).
+
+**Vercel:** In Project Settings → General, set **Root Directory** to `website` (this repo has the app in a subfolder). Then deploy; all routes will resolve correctly.
 
 ## Pages
 
