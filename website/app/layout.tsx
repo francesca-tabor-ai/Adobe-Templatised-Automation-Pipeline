@@ -3,6 +3,7 @@ import { Source_Sans_3 } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ChatBot from '@/components/chatbot/ChatBot'
 import DebugRouteLogger from '@/components/DebugRouteLogger'
 
 const sourceSans = Source_Sans_3({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ChatBot />
       </body>
     </html>
   )
