@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "provider": "google_gemini",
+  "model": "gemini-2.0-flash",
+  "variationsPerSeed": 5,
+  "fields": ["headline", "subheadline", "cta"],
+  "scoringCriteria": [
+    "relevance_to_brief",
+    "emotional_impact",
+    "clarity",
+    "uniqueness",
+    "cta_strength"
+  ],
+  "promptTemplate": "You are a creative copywriter for {{brandName}}. Generate {{variationsPerSeed}} variations of the following {{field}} for a {{channel}} ad.\n\nOriginal: \"{{originalText}}\"\nBrand voice: {{brandVoice}}\nTone: {{tone}}\nAudience: {{audience}}\nKey benefits: {{keyBenefits}}\nAvoid: {{avoidTerms}}\nLanguage: {{language}}\nMaximum characters: {{maxChars}}\n\nReturn a JSON array of objects. Each object must have: \"text\" (the variation), \"rationale\" (why this works), \"score\" (0.0-1.0 relevance/quality score).\nReturn ONLY the JSON array, no other text.",
+  "temperatureByField": {
+    "headline": 0.9,
+    "subheadline": 0.7,
+    "cta": 0.5
+  },
+  "maxTokensPerRequest": 2000,
+  "costPerRequestUsd": 0.001,
+  "budgetLimitPerRunUsd": 5.00,
+  "requireHumanApproval": true,
+  "hypothesisPrefix": "H_ai_",
+  "variableChangedMap": {
+    "headline": "headline_ai_variation",
+    "subheadline": "subheadline_ai_variation",
+    "cta": "cta_ai_variation"
+  }
+}

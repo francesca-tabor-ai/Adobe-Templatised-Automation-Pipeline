@@ -1,0 +1,14 @@
+{
+  "brandName": "ACME Corp",
+  "colorPalette": {
+    "primary": "#1E40AF",
+    "secondary": "#F59E0B",
+    "accent": "#10B981",
+    "neutralDark": "#1F2937",
+    "neutralLight": "#F9FAFB"
+  },
+  "styleKeywords": ["clean", "modern", "professional", "minimal"],
+  "avoidKeywords": ["cartoonish", "cluttered", "neon", "grunge"],
+  "photographyStyle": "lifestyle, natural lighting, shallow depth of field",
+  "backgroundPromptTemplate": "Professional {{photographyStyle}} background for a {{channel}} advertisement. Brand colors: {{colorPalette.primary}}, {{colorPalette.secondary}}. Style: {{styleKeywords}}. Product context: {{productContext}}. Do not include: {{avoidKeywords}}, {{negativePromptDefaults}}."
+}
