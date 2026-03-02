@@ -1,10 +1,23 @@
 #!/usr/bin/env node
 /**
- * CGVIP pipeline runner: runs agents in order (Dataset Governance → Compliance → Template Compatibility → Render),
+ * CGVIP pipeline runner: runs agents in order (Dataset Governance → [AI Agents] → Compliance → Template Compatibility → Render),
  * writes audit log, then delegates to existing runner and writes job manifest.
  * Usage: node run_cgvip_pipeline.js --path indesign|photoshop|aftereffects [--dataset path] [--approved-only] [--config path]
  *        node run_cgvip_pipeline.js --post-render [--path app]  (Phase 2: run QA aggregate + QA agent)
  *        node run_cgvip_pipeline.js --performance [--suppress-from-performance] (Phase 3: performance intelligence)
+ *
+ * AI Generation flags:
+ *        --ai-generate-copy              Generate headline/subheadline/CTA variations via LLM
+ *        --ai-translate                  Translate text fields across languages
+ *        --ai-target-langs de,fr,es      Target languages for translation (comma-separated)
+ *        --ai-generate-backgrounds       Generate background images via Imagen/DALL-E
+ *        --ai-brief path                 Path to campaign brief JSON file
+ *        --ai-provider name              Override default AI provider (google_gemini|anthropic_claude|openai)
+ *        --ai-budget-limit N             Override per-run budget limit in USD
+ *        --ai-dry-run                    Validate prompts and estimate cost without real API calls
+ *        --ai-optimize-prompts           Enhance prompts into cinematic video prompts via multimodal Gemini
+ *        --ai-approve path               Approve AI-generated content from approval queue file
+ *        --ai-cost-report                Show cost summary of AI usage
  */
 
 const path = require('path');
@@ -25,7 +38,14 @@ function loadConfig(configPath) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const out = { path: null, dataset: null, approvedOnly: false, config: null, postRender: false, qaOnly: false, performance: false, suppressFromPerformance: false };
+  const out = {
+    path: null, dataset: null, approvedOnly: false, config: null,
+    postRender: false, qaOnly: false, performance: false, suppressFromPerformance: false,
+    // AI flags
+    aiGenerateCopy: false, aiTranslate: false, aiTargetLangs: null,
+    aiGenerateBackgrounds: false, aiOptimizePrompts: false, aiBrief: null, aiProvider: null,
+    aiBudgetLimit: null, aiDryRun: false, aiApprove: null, aiCostReport: false
+  };
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--path' && args[i + 1]) {
       out.path = args[++i].toLowerCase();
@@ -43,6 +63,28 @@ function parseArgs() {
       out.performance = true;
     } else if (args[i] === '--suppress-from-performance') {
       out.suppressFromPerformance = true;
+    } else if (args[i] === '--ai-generate-copy') {
+      out.aiGenerateCopy = true;
+    } else if (args[i] === '--ai-translate') {
+      out.aiTranslate = true;
+    } else if (args[i] === '--ai-target-langs' && args[i + 1]) {
+      out.aiTargetLangs = args[++i];
+    } else if (args[i] === '--ai-generate-backgrounds') {
+      out.aiGenerateBackgrounds = true;
+    } else if (args[i] === '--ai-optimize-prompts') {
+      out.aiOptimizePrompts = true;
+    } else if (args[i] === '--ai-brief' && args[i + 1]) {
+      out.aiBrief = args[++i];
+    } else if (args[i] === '--ai-provider' && args[i + 1]) {
+      out.aiProvider = args[++i];
+    } else if (args[i] === '--ai-budget-limit' && args[i + 1]) {
+      out.aiBudgetLimit = parseFloat(args[++i]);
+    } else if (args[i] === '--ai-dry-run') {
+      out.aiDryRun = true;
+    } else if (args[i] === '--ai-approve' && args[i + 1]) {
+      out.aiApprove = args[++i];
+    } else if (args[i] === '--ai-cost-report') {
+      out.aiCostReport = true;
     }
   }
   return out;
@@ -103,6 +145,48 @@ async function main() {
     return;
   }
 
+  // --- AI Cost Report ---
+  if (opts.aiCostReport) {
+    const aiOutputDir = path.join(REPO_ROOT, 'output/ai');
+    const costReportPath = path.join(aiOutputDir, 'cost_report.json');
+    if (fs.existsSync(costReportPath)) {
+      const report = JSON.parse(fs.readFileSync(costReportPath, 'utf8'));
+      console.log('AI Cost Report (Run: ' + report.runId + ')');
+      console.log('  Total: $' + (report.totalCostUsd || 0).toFixed(4));
+      console.log('  Budget: $' + (report.budgetLimitUsd || 0).toFixed(2));
+      if (report.byAgent) {
+        for (const [agent, data] of Object.entries(report.byAgent)) {
+          console.log('  ' + agent + ': ' + data.count + ' calls, $' + data.totalUsd.toFixed(4));
+        }
+      }
+    } else {
+      console.log('No AI cost report found. Run AI agents first.');
+    }
+    return;
+  }
+
+  // --- AI Approve ---
+  if (opts.aiApprove) {
+    const approveFile = path.resolve(opts.aiApprove);
+    if (!fs.existsSync(approveFile)) {
+      console.error('Approval file not found: ' + approveFile);
+      return;
+    }
+    const approvalData = JSON.parse(fs.readFileSync(approveFile, 'utf8'));
+    let approvedCount = 0;
+    if (approvalData.items) {
+      for (const item of approvalData.items) {
+        item.approved = true;
+        approvedCount++;
+      }
+    }
+    approvalData.status = 'approved';
+    approvalData.reviewedAt = new Date().toISOString();
+    fs.writeFileSync(approveFile, JSON.stringify(approvalData, null, 2), 'utf8');
+    console.log('Approved ' + approvedCount + ' AI-generated items in ' + approveFile);
+    return;
+  }
+
   if (opts.performance) {
     try {
       const perfAgent = require('./agents/performance_intelligence');
@@ -128,6 +212,18 @@ async function main() {
     console.log('Usage: node run_cgvip_pipeline.js --path indesign|photoshop|aftereffects [--dataset path] [--approved-only] [--config path]');
     console.log('       node run_cgvip_pipeline.js --post-render [--path app]');
     console.log('       node run_cgvip_pipeline.js --performance [--suppress-from-performance]');
+    console.log('');
+    console.log('AI Generation:');
+    console.log('       --ai-generate-copy              Generate headline/subheadline/CTA variations');
+    console.log('       --ai-translate --ai-target-langs de,fr   Translate to target languages');
+    console.log('       --ai-generate-backgrounds       Generate background images');
+    console.log('       --ai-optimize-prompts           Enhance into cinematic video prompts (multimodal)');
+    console.log('       --ai-brief path                 Campaign brief JSON');
+    console.log('       --ai-provider name              Override provider (google_gemini|anthropic_claude|openai)');
+    console.log('       --ai-budget-limit N             Budget limit in USD');
+    console.log('       --ai-dry-run                    Estimate cost without calling APIs');
+    console.log('       --ai-approve path               Approve AI content from queue file');
+    console.log('       --ai-cost-report                Show AI cost summary');
     return;
   }
 
@@ -152,10 +248,32 @@ async function main() {
     reasoningLog: ['CGVIP pipeline started', `app=${appPath} variants=${records.length}`]
   });
 
-  const context = { app: appPath, campaignId: null, runId, config };
+  // Build AI context if any AI flags are active
+  const hasAI = opts.aiGenerateCopy || opts.aiTranslate || opts.aiGenerateBackgrounds || opts.aiOptimizePrompts;
+  let brief = {};
+  if (opts.aiBrief) {
+    const briefPath = path.resolve(opts.aiBrief);
+    if (fs.existsSync(briefPath)) brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
+  }
 
-  const agentOrder = ['dataset_governance', 'compliance_intelligence', 'template_compatibility'];
-  let payload = { records, datasetVersion: null, templateVersion: '1.0' };
+  const context = {
+    app: appPath, campaignId: null, runId, config,
+    // AI context passed to agents
+    aiProvider: opts.aiProvider || null,
+    aiBudgetLimit: opts.aiBudgetLimit || null,
+    aiTargetLangs: opts.aiTargetLangs || null,
+    aiDryRun: opts.aiDryRun || false
+  };
+
+  // Build agent order dynamically: dataset_governance → [AI agents] → compliance → template
+  const agentOrder = ['dataset_governance'];
+  if (opts.aiGenerateCopy) agentOrder.push('ai_copy_generation');
+  if (opts.aiTranslate) agentOrder.push('ai_translation');
+  if (opts.aiGenerateBackgrounds) agentOrder.push('ai_background_generation');
+  if (opts.aiOptimizePrompts) agentOrder.push('ai_prompt_optimizer');
+  agentOrder.push('compliance_intelligence', 'template_compatibility');
+
+  let payload = { records, datasetVersion: null, templateVersion: '1.0', brief, targetLanguages: opts.aiTargetLangs };
 
   for (const agentId of agentOrder) {
     const agentPath = path.join(__dirname, 'agents', `${agentId}.js`);
@@ -175,6 +293,26 @@ async function main() {
     if (result.outputPayload && result.outputPayload.records) {
       records = result.outputPayload.records;
     }
+  }
+
+  // --- AI content summary ---
+  if (hasAI) {
+    const aiGenerated = records.filter(r => r.ai_generated || r.ai_translated);
+    const approvalFiles = [];
+    if (payload.approvalFile) approvalFiles.push(payload.approvalFile);
+    const totalAiCost = payload.aiTotalCostUsd || 0;
+
+    console.log('\n--- AI Content Generation Summary ---');
+    console.log('  Original variants: ' + (records.length - aiGenerated.length));
+    console.log('  AI-generated variants: ' + aiGenerated.length);
+    console.log('  Total AI cost: $' + totalAiCost.toFixed(4));
+    if (approvalFiles.length) {
+      console.log('  Approval queue files:');
+      approvalFiles.forEach(f => console.log('    ' + f));
+    }
+    console.log('  Status: AI content pending human review (approved=false)');
+    console.log('  To approve: node run_cgvip_pipeline.js --ai-approve <approval_file>');
+    console.log('-----------------------------------\n');
   }
 
   const stagingDir = path.join(outputDir, appPath);

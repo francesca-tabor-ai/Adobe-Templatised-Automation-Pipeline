@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "provider": "google_gemini",
+  "model": "imagen-3",
+  "outputDir": "assets/ai_generated",
+  "outputFormat": "png",
+  "defaultResolution": { "width": 1920, "height": 1080 },
+  "resolutionByChannel": {
+    "social_1_1": { "width": 1080, "height": 1080 },
+    "social_16_9": { "width": 1920, "height": 1080 },
+    "social_9_16": { "width": 1080, "height": 1920 },
+    "print_a4": { "width": 2480, "height": 3508 }
+  },
+  "negativePromptDefaults": "text, watermark, logo, blurry, low quality, distorted",
+  "safetyFilterLevel": "block_medium_and_above",
+  "maxConcurrentRequests": 3,
+  "costPerImageUsd": 0.04,
+  "budgetLimitPerRunUsd": 10.00,
+  "requireHumanApproval": true
+}

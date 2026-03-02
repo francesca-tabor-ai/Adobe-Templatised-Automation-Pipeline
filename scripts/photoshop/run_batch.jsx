@@ -56,6 +56,13 @@
 
   function resolveAsset(id, map) {
     if (map && map[id]) return map[id];
+    // Check for AI-generated assets (prefixed with bg_ai_ or prod_ai_)
+    if (assetBasePath && id && (id.indexOf('bg_ai_') === 0 || id.indexOf('prod_ai_') === 0)) {
+      var aiPng = assetBasePath + '/ai_generated/' + id + '.png';
+      if (new File(aiPng).exists) return aiPng;
+      var aiJpg = assetBasePath + '/ai_generated/' + id + '.jpg';
+      if (new File(aiJpg).exists) return aiJpg;
+    }
     if (assetBasePath && id) return assetBasePath + '/' + id + '.jpg';
     return null;
   }

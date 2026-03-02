@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "provider": "google_gemini",
+  "model": "gemini-2.0-flash",
+  "fields": ["headline", "subheadline", "cta"],
+  "supportedLanguages": ["en", "de", "fr", "es", "it", "pt", "nl", "ja", "zh", "ko"],
+  "promptTemplate": "You are a professional marketing translator. Translate the following {{field}} from {{sourceLanguage}} to {{targetLanguage}} for the {{market}} market.\n\nOriginal ({{sourceLanguage}}): \"{{originalText}}\"\nContext: This is a {{field}} for a {{channel}} advertisement.\nBrand: {{brandName}}\nMaximum characters: {{maxChars}}\nMarket-specific terminology: {{marketNotes}}\n\nReturn ONLY a JSON object with: \"text\" (the translation), \"back_translation\" (translation back to {{sourceLanguage}} for verification), \"notes\" (any translation notes or caveats).\nReturn ONLY the JSON object, no other text.",
+  "marketTerminology": {
+    "DE": {
+      "sale": "Angebot",
+      "free shipping": "Kostenloser Versand",
+      "shop now": "Jetzt einkaufen",
+      "limited time": "Nur f\u00fcr kurze Zeit"
+    },
+    "FR": {
+      "sale": "promotion",
+      "free shipping": "livraison gratuite",
+      "shop now": "Achetez maintenant",
+      "limited time": "Offre limit\u00e9e"
+    },
+    "ES": {
+      "sale": "oferta",
+      "free shipping": "env\u00edo gratuito",
+      "shop now": "Comprar ahora",
+      "limited time": "Tiempo limitado"
+    }
+  },
+  "temperatureTranslation": 0.3,
+  "maxTokensPerRequest": 1000,
+  "costPerRequestUsd": 0.0005,
+  "budgetLimitPerRunUsd": 3.00,
+  "requireHumanApproval": true,
+  "generateBackTranslation": true
+}

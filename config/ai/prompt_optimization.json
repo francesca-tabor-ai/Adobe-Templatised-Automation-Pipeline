@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "provider": "google_gemini",
+  "model": "gemini-2.0-flash",
+  "promptTemplate": "You are a world-class cinematic video prompt engineer. Analyze the provided background image and the original creative prompt below, then produce an enhanced, production-level video prompt.\n\nOriginal prompt: \"{{originalPrompt}}\"\nChannel: {{channel}}\nAspect ratio: {{aspectRatio}}\nBrand: {{brandName}}\nMood/tone: {{tone}}\n\nYour enhanced prompt must include:\n1. Camera movement (dolly, crane, tracking, steadicam, drone, etc.)\n2. Lighting direction and quality (golden hour, rim light, diffused, etc.)\n3. Depth of field and lens choice (anamorphic, macro, wide, etc.)\n4. Color grading notes (LUT reference, shadow/highlight tones)\n5. Motion elements (particles, fabric movement, liquid, smoke, etc.)\n6. Temporal pacing (slow-motion, time-lapse, real-time)\n7. Film stock / texture (grain, halation, bloom)\n8. Resolution and frame rate\n\nReturn ONLY a JSON object with:\n- \"video_prompt\": the full cinematic video prompt (200-400 words)\n- \"camera_movement\": primary camera technique\n- \"lighting\": lighting setup description\n- \"color_grade\": color grading notes\n- \"duration_seconds\": recommended clip duration\n- \"style_reference\": a well-known film or director whose visual style this evokes",
+  "temperature": 0.8,
+  "maxTokensPerRequest": 3000,
+  "costPerRequestUsd": 0.002,
+  "budgetLimitPerRunUsd": 5.00,
+  "requireHumanApproval": true
+}

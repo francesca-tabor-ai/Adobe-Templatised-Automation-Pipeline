@@ -23,6 +23,24 @@
     "start_date": { "type": "string", "format": "date" },
     "end_date": { "type": "string", "format": "date" },
     "hypothesis_id": { "type": "string" },
-    "variable_changed": { "type": "string" }
+    "variable_changed": { "type": "string" },
+    "ai_generated": { "type": "boolean", "default": false, "description": "Whether this variant was AI-generated" },
+    "ai_translated": { "type": "boolean", "default": false, "description": "Whether text fields were AI-translated" },
+    "parent_variant_id": { "type": "string", "description": "Source variant this was generated/translated from" },
+    "ai_model": { "type": "string", "description": "AI model used for generation/translation" },
+    "ai_provider": { "type": "string", "description": "AI provider (google_gemini, anthropic_claude, openai)" },
+    "ai_score": { "type": "number", "description": "AI-assigned quality/relevance score (0.0-1.0)" },
+    "ai_ranking": { "type": "integer", "description": "Rank among generated variations" },
+    "source_language": { "type": "string", "description": "Original language before translation" },
+    "background_prompt": { "type": "string", "description": "Prompt used for AI background generation" },
+    "ai_generation_run_id": { "type": "string", "description": "Run ID of the AI generation pass" },
+    "ai_cost_usd": { "type": "number", "description": "Cost of AI API call for this variant" },
+    "video_prompt": { "type": "string", "description": "Enhanced cinematic video prompt from multimodal optimization" },
+    "video_camera_movement": { "type": "string", "description": "Primary camera technique for video" },
+    "video_lighting": { "type": "string", "description": "Lighting setup description for video" },
+    "video_color_grade": { "type": "string", "description": "Color grading notes for video" },
+    "video_duration_seconds": { "type": "number", "description": "Recommended clip duration in seconds" },
+    "video_style_reference": { "type": "string", "description": "Film/director style reference" },
+    "prompt_optimized": { "type": "boolean", "default": false, "description": "Whether prompt was enhanced via multimodal optimization" }
   }
 }
