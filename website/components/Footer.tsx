@@ -35,6 +35,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/integrations" className="text-sm text-ink-muted hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted">
+                  Integrations
+                </Link>
+              </li>
+              <li>
+                <Link href="/architecture" className="text-sm text-ink-muted hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted">
+                  Architecture
+                </Link>
+              </li>
+              <li>
                 <Link href="/use-cases" className="text-sm text-ink-muted hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted">
                   Use cases
                 </Link>

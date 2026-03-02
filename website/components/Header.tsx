@@ -7,6 +7,8 @@ import { useState } from 'react'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/product', label: 'Product' },
+  { href: '/integrations', label: 'Integrations' },
+  { href: '/architecture', label: 'Architecture' },
   { href: '/project-board', label: 'Project Board' },
   { href: '/use-cases', label: 'Use Cases' },
   { href: '/resources', label: 'Resources' },
@@ -33,7 +35,7 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className={`rounded-ui px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted ${
+              className={`rounded-ui px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-muted ${
                 pathname === href
                   ? 'bg-paper-subdued text-ink'
                   : 'text-ink-muted hover:bg-paper-subdued hover:text-ink'

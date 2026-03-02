@@ -126,10 +126,91 @@ export const knowledgeBase: KnowledgeEntry[] = [
     id: 'adobe-integration',
     topic: 'Adobe integration',
     phrases: ['adobe integration', 'works with adobe', 'indesign photoshop after effects'],
-    keywords: ['adobe', 'indesign', 'photoshop', 'after effects', 'creative cloud', 'extendscript', 'integrate'],
+    keywords: ['adobe', 'creative cloud', 'extendscript', 'integrate'],
     response:
-      'CGVIP orchestrates Adobe — it doesn\'t replace it. It works with:\n\n• InDesign — Template merge, locked disclaimers, preflight validation\n• Photoshop — Smart Object automation, JSON-driven export\n• After Effects — Modular templates (HOOK / PRODUCT / LEGAL / END CARD), render queue\n\nExecution pipelines use ExtendScript to drive Adobe apps. Designers continue working in their familiar tools — CGVIP adds the governance, compliance, and orchestration layer on top.',
-    quickActions: ['What agents exist?', 'How does it work?', 'Template agent'],
+      'CGVIP orchestrates Adobe — it doesn\'t replace it. Three ExtendScript pipelines drive production:\n\n• InDesign — CSV data merge, locked disclaimers, preflight validation, PDF export\n• Photoshop — JSON-driven Smart Object substitution, batch PNG export\n• After Effects — Data-driven render, comp duplication, H.264 MP4 export\n\nDesigners continue working in their familiar tools — CGVIP adds governance, compliance, and orchestration on top. Visit the Integrations page for full technical details.',
+    quickActions: ['InDesign pipeline', 'Photoshop pipeline', 'After Effects pipeline'],
+    link: { label: 'See integrations', href: '/integrations' },
+  },
+  {
+    id: 'indesign-pipeline',
+    topic: 'InDesign pipeline',
+    phrases: ['indesign', 'indesign pipeline', 'data merge', 'pdf export', 'print layout'],
+    keywords: ['indesign', 'merge', 'pdf', 'print', 'csv', 'preflight', 'text frame'],
+    response:
+      'The InDesign Data Merge Pipeline produces multi-language print and static layouts:\n\n• Input: CSV with UTF-8 encoding, column headers matching template merge fields\n• Template: Named text frames, locked layers for brand/legal, paragraph styles for fallback sizing\n• Validation: Preflight checks for disclaimer presence, missing fonts, and bleed\n• Output: One PDF per variant with structured manifest\n\nThe pipeline uses ExtendScript to automate data merge, per-record export, and preflight validation.',
+    quickActions: ['Photoshop pipeline', 'After Effects pipeline', 'Template specs'],
+    link: { label: 'See integrations', href: '/integrations' },
+  },
+  {
+    id: 'photoshop-pipeline',
+    topic: 'Photoshop pipeline',
+    phrases: ['photoshop', 'photoshop pipeline', 'smart object', 'png export', 'image variant'],
+    keywords: ['photoshop', 'smart object', 'png', 'layer', 'batch', 'json', 'image'],
+    response:
+      'The Photoshop Smart Object Batch pipeline produces image-driven variants:\n\n• Input: JSON with variant data and asset references\n• Template: Smart Object layers (BACKGROUND_SMART, PRODUCT_SMART) + text layers (HEADLINE_TEXT, CTA_TEXT, DISCLAIMER_TEXT)\n• Process: placedLayerReplaceContents for image substitution, case-insensitive layer matching\n• Output: One PNG per variant with structured manifest\n\nAsset paths resolve from config or the default assets/{id}.jpg convention.',
+    quickActions: ['InDesign pipeline', 'After Effects pipeline', 'Template specs'],
+    link: { label: 'See integrations', href: '/integrations' },
+  },
+  {
+    id: 'aftereffects-pipeline',
+    topic: 'After Effects pipeline',
+    phrases: ['after effects', 'after effects pipeline', 'motion', 'video', 'mp4', 'render queue'],
+    keywords: ['after effects', 'motion', 'video', 'mp4', 'render', 'composition', 'essential graphics', 'mogrt'],
+    response:
+      'The After Effects Data-Driven Render pipeline produces multi-variant motion:\n\n• Input: CSV or JSON data feed\n• Template: Named comps per aspect ratio (Comp_16x9, Comp_1x1), text layers (HEADLINE, CTA, DISCLAIMER), modular structure (HOOK / PRODUCT / LEGAL / END CARD)\n• Process: Comp duplication per variant, Source Text automation, render queue with H.264 output module\n• Output: One MP4 per variant with structured manifest\n\nEssential Graphics (MOGRT) panels are supported for extended property control.',
+    quickActions: ['InDesign pipeline', 'Photoshop pipeline', 'Template specs'],
+    link: { label: 'See integrations', href: '/integrations' },
+  },
+  {
+    id: 'cif-overview',
+    topic: 'CIF — Creative Intelligence Flywheel',
+    phrases: ['what is cif', 'creative intelligence flywheel', 'predictive intelligence', 'intelligence layer'],
+    keywords: ['cif', 'flywheel', 'predictive', 'intelligence', 'prediction', 'ml', 'machine learning'],
+    response:
+      'CIF (Creative Intelligence Flywheel) is the predictive intelligence layer on top of CGVIP governance. It has 6 agents:\n\n1. Behavioral Signal Aggregator — Builds the creative feature store\n2. Performance Prediction — Predicts CTR, engagement, fatigue per variant\n3. Compliance Risk Prediction — Predicts legal rejection probability\n4. Variant Optimization — Recommends variant mix with compliance guardrails\n5. Render & Deployment Orchestrator — Filters to recommended variants\n6. Economic Value Attribution — ROAS, cost per asset, creative reuse metrics\n\nCIF doesn\'t replace CGVIP — it adds a learning system that compounds with every campaign.',
+    quickActions: ['Architecture overview', 'What agents exist?', 'What is CGVIP?'],
+    link: { label: 'See architecture', href: '/architecture' },
+  },
+  {
+    id: 'dam-metadata',
+    topic: 'DAM metadata',
+    phrases: ['dam metadata', 'digital asset management', 'asset metadata', 'sidecar', 'metadata schema'],
+    keywords: ['dam', 'metadata', 'sidecar', 'asset management', 'traceability', 'manifest'],
+    response:
+      'Every asset produced by CGVIP carries structured metadata for full traceability. A .metadata.json sidecar is generated alongside each asset containing:\n\n• variant_id, market, language, channel\n• template_version, dataset_version, compliance_version\n• campaign_id, approval_timestamp\n• automation_agent_signature (links to audit log)\n\nThis means every asset in DAM can be fully reconstructed from its template, dataset, and compliance versions. Auto-archival rules handle expired assets.',
+    quickActions: ['Adobe integrations', 'Architecture overview', 'Audit trail'],
+    link: { label: 'See integrations', href: '/integrations' },
+  },
+  {
+    id: 'architecture-overview',
+    topic: 'Platform architecture',
+    phrases: ['architecture overview', 'platform architecture', 'system architecture', 'how is it built'],
+    keywords: ['architecture', 'platform', 'layers', 'infrastructure', 'lakehouse', 'data architecture'],
+    response:
+      'CGVIP is a three-layer platform:\n\n1. Intelligence (CIF) — Predictive models for performance, compliance risk, variant optimization, and economic attribution\n2. Governance (CGVIP) — 7 agents for compliance, dataset integrity, template compatibility, and human-in-the-loop approvals\n3. Execution (Adobe) — ExtendScript pipelines for InDesign, Photoshop, After Effects\n\nData architecture uses a lakehouse pattern (Bronze → Silver → Gold) with immutable lineage. Every asset is reconstructable from its template + dataset + compliance version.',
+    quickActions: ['CIF agents', 'CGVIP agents', 'Adobe integrations'],
+    link: { label: 'See architecture', href: '/architecture' },
+  },
+  {
+    id: 'variant-schema',
+    topic: 'Variant schema',
+    phrases: ['variant schema', 'data model', 'variant fields', 'what data is needed'],
+    keywords: ['variant', 'schema', 'data model', 'fields', 'columns', 'structure'],
+    response:
+      'The variant schema defines the core data structure flowing through the pipeline. Key canonical IDs:\n\n• campaign_id — Links all assets to their campaign\n• variant_id — Unique identifier per creative variant\n• market, language, channel — Targeting dimensions\n• template_version — Semantic version of the Adobe template\n• dataset_version — Version of the variant dataset\n• compliance_version — Legal rule-set version applied\n\nThese IDs thread every asset through the entire system from recommendation to DAM publication.',
+    quickActions: ['Architecture overview', 'DAM metadata', 'How does it work?'],
+    link: { label: 'See architecture', href: '/architecture' },
+  },
+  {
+    id: 'template-specs',
+    topic: 'Template specifications',
+    phrases: ['template spec', 'template specification', 'template requirements', 'template rules'],
+    keywords: ['template spec', 'template requirements', 'template rules', 'naming convention'],
+    response:
+      'Each Adobe app has specific template requirements:\n\n• InDesign: Named text frames matching CSV columns, locked layers for brand/legal, paragraph styles, bleed configured\n• Photoshop: Smart Object layers (*_SMART), text layers (*_TEXT), consistent naming convention\n• After Effects: Named comps per aspect ratio, text layers (HEADLINE, CTA, DISCLAIMER), modular sections (HOOK / PRODUCT / LEGAL / END CARD)\n\nThe Template Compatibility Agent validates all of these before rendering begins.',
+    quickActions: ['InDesign pipeline', 'Photoshop pipeline', 'After Effects pipeline'],
+    link: { label: 'See integrations', href: '/integrations' },
   },
   {
     id: 'human-in-the-loop',
@@ -207,6 +288,6 @@ export const fallbackResponse: Pick<KnowledgeEntry, 'response' | 'quickActions'>
 
 export const welcomeMessage: Pick<KnowledgeEntry, 'response' | 'quickActions'> = {
   response:
-    'Welcome! I\'m the CGVIP Assistant — here to help you navigate the Creative Governance & Variant Intelligence Platform.\n\nI can answer questions about our 7-agent architecture, compliance features, deployment phases, use cases, and more. What would you like to know?',
-  quickActions: ['What is CGVIP?', 'How does it work?', 'What agents exist?', 'Use cases', 'How to deploy?', 'Contact team'],
+    'Welcome! I\'m the CGVIP Assistant — here to help you navigate the Creative Governance & Variant Intelligence Platform.\n\nI can answer questions about our agent architecture, Adobe integrations, platform architecture, compliance features, deployment phases, use cases, and more. What would you like to know?',
+  quickActions: ['What is CGVIP?', 'How does it work?', 'Adobe integrations', 'Architecture', 'Use cases', 'Contact team'],
 }
