@@ -1,0 +1,25 @@
+{
+  "levels": [
+    {
+      "tier": 1,
+      "triggerCondition": "design_ambiguity",
+      "description": "Ambiguous design decisions requiring creative owner clarification",
+      "notifyRoles": ["creative_owner"],
+      "timeoutHours": 24
+    },
+    {
+      "tier": 2,
+      "triggerCondition": "unresolved_after_tier1",
+      "description": "Tier 1 unresolved within timeout; escalate to brand guardian",
+      "notifyRoles": ["brand_guardian"],
+      "timeoutHours": 48
+    },
+    {
+      "tier": 3,
+      "triggerCondition": "blocking_production",
+      "description": "Decision blocking production progress; immediate escalation",
+      "notifyRoles": ["escalation_contact"],
+      "timeoutHours": 4
+    }
+  ]
+}

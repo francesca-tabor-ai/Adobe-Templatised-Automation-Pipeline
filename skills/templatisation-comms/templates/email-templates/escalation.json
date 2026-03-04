@@ -1,0 +1,7 @@
+{
+  "type": "escalation",
+  "subject": "ESCALATION: {{projectName}} — {{issue}}",
+  "body": "Hi {{recipient.name}},\n\nAn issue has been escalated on project {{projectName}}.\n\nIssue: {{issue}}\nSeverity: Tier {{tier}}\nOriginal raised: {{raisedDate}}\nBlocking: {{blockingDescription}}\n\nPlease respond within {{timeoutHours}} hours to unblock production.\n\nBest regards,\n{{sender.name}}",
+  "recipients": ["{{escalationRole}}"],
+  "variables": ["projectName", "issue", "tier", "raisedDate", "blockingDescription", "timeoutHours", "escalationRole", "recipient.name", "sender.name"]
+}

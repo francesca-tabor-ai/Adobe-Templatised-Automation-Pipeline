@@ -1,0 +1,7 @@
+{
+  "type": "handover",
+  "subject": "Handover: {{projectName}} — Templates Ready for Automation",
+  "body": "Hi {{recipient.name}},\n\nThe templatisation of {{projectName}} is complete. The handover package is ready for the automation pipeline.\n\nPackage contents:\n- Template PSD(s)\n- Variant specifications\n- Format tracking sheet\n- Export presets\n- QC report\n\nHandover location: {{handoverPath}}\n\nPlease confirm receipt and begin automation integration.\n\nBest regards,\n{{sender.name}}",
+  "recipients": ["production_owner"],
+  "variables": ["projectName", "handoverPath", "recipient.name", "sender.name"]
+}

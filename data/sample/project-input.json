@@ -1,0 +1,40 @@
+{
+  "projectName": "summer-campaign-2024",
+  "brand": "Acme Corp",
+  "campaign": {
+    "name": "Summer Refresh",
+    "hasIridescentEffects": true,
+    "markets": ["US", "DE", "FR"],
+    "channels": ["social_1_1", "social_16_9", "print_a4"]
+  },
+  "project": {
+    "skuCount": 3,
+    "formatCount": 6
+  },
+  "contacts": {
+    "creative_owner": { "name": "Jane Smith", "email": "jane@acme.com" },
+    "production_owner": { "name": "Bob Johnson", "email": "bob@acme.com" },
+    "brand_guardian": { "name": "Alice Williams", "email": "alice@acme.com" },
+    "escalation_contact": { "name": "Carol Davis", "email": "carol@acme.com" }
+  },
+  "assets": {
+    "sourceFiles": ["hero_banner.psd", "product_shot_01.psd"],
+    "layers": [
+      { "name": "LOGO_MAIN", "type": "image", "visible": true },
+      { "name": "HEADLINE_TEXT", "type": "text", "visible": true },
+      { "name": "PRODUCT_HERO", "type": "smartObject", "visible": true },
+      { "name": "BG_GRADIENT", "type": "fill", "visible": true },
+      { "name": "CTA_BUTTON", "type": "text", "visible": true },
+      { "name": "LEGAL_DISCLAIMER", "type": "text", "visible": true },
+      { "name": "IRIDESCENT_OVERLAY", "type": "adjustment", "visible": true }
+    ]
+  },
+  "formats": [
+    { "id": "F001", "name": "Social Square", "dimensions": "1080x1080", "channel": "social_1_1", "skuApplicability": "all" },
+    { "id": "F002", "name": "Social Wide", "dimensions": "1920x1080", "channel": "social_16_9", "skuApplicability": "all" },
+    { "id": "F003", "name": "Print A4", "dimensions": "595x842pt", "channel": "print_a4", "skuApplicability": "sku_001" },
+    { "id": "F004", "name": "Social Story", "dimensions": "1080x1920", "channel": "social_9_16", "skuApplicability": "all" },
+    { "id": "F005", "name": "Web Banner", "dimensions": "728x90", "channel": "display", "skuApplicability": "all" },
+    { "id": "F006", "name": "Web Skyscraper", "dimensions": "160x600", "channel": "display", "skuApplicability": "sku_002" }
+  ]
+}

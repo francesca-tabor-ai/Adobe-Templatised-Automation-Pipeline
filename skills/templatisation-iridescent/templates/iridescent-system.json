@@ -1,0 +1,16 @@
+{
+  "colourStops": [
+    { "position": 0, "colour": "#E8D5F5", "label": "Lavender" },
+    { "position": 25, "colour": "#D5E8F5", "label": "Sky Blue" },
+    { "position": 50, "colour": "#D5F5E8", "label": "Mint" },
+    { "position": 75, "colour": "#F5E8D5", "label": "Peach" },
+    { "position": 100, "colour": "#F5D5E8", "label": "Rose" }
+  ],
+  "gradientAngles": [45, 135, 225, 315],
+  "blendMode": "Overlay",
+  "opacity": 60,
+  "layerEffects": [
+    { "type": "gradient_overlay", "angle": 45, "scale": 100 },
+    { "type": "inner_glow", "colour": "#FFFFFF", "opacity": 20 }
+  ]
+}

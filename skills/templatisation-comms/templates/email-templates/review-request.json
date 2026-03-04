@@ -1,0 +1,7 @@
+{
+  "type": "review-request",
+  "subject": "Review Required: {{projectName}} — {{phase}} Complete",
+  "body": "Hi {{recipient.name}},\n\nThe {{phase}} phase of {{projectName}} is complete and ready for your review.\n\nPlease review the following deliverables:\n{{deliverables}}\n\nReview deadline: {{deadline}}\n\nPlease provide feedback or approval by the deadline.\n\nBest regards,\n{{sender.name}}",
+  "recipients": ["creative_owner", "brand_guardian"],
+  "variables": ["projectName", "phase", "deliverables", "deadline", "recipient.name", "sender.name"]
+}

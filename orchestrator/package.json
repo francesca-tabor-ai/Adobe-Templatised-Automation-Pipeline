@@ -9,9 +9,12 @@
     "photoshop": "node run_pipeline.js --path photoshop",
     "aftereffects": "node run_pipeline.js --path aftereffects",
     "cgvip": "node run_cgvip_pipeline.js",
-    "test:agents": "node agents/__tests__/contract.test.js && node agents/__tests__/audit.test.js && node agents/__tests__/dataset_governance.test.js && node agents/__tests__/compliance_intelligence.test.js && node agents/__tests__/template_compatibility.test.js"
+    "skills": "node run_skills_pipeline.js",
+    "test:agents": "node agents/__tests__/contract.test.js && node agents/__tests__/audit.test.js && node agents/__tests__/dataset_governance.test.js && node agents/__tests__/compliance_intelligence.test.js && node agents/__tests__/template_compatibility.test.js",
+    "test:skills": "node ../skills/__tests__/skill-contract.test.js && node ../skills/__tests__/state-manager.test.js && node ../skills/__tests__/gate-evaluator.test.js && node ../skills/__tests__/pipeline.test.js"
   },
   "bin": {
-    "run-pipeline": "./run_pipeline.js"
+    "run-pipeline": "./run_pipeline.js",
+    "run-skills": "./run_skills_pipeline.js"
   }
 }

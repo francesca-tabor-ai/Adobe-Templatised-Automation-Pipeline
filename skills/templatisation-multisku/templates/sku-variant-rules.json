@@ -1,0 +1,9 @@
+{
+  "smartObjectMapping": {
+    "SKU_PRODUCT": "{{sku.imageId}}",
+    "SKU_VARIANT": "{{sku.variantId}}"
+  },
+  "variantNaming": "{{base}}_SKU{{skuIndex}}",
+  "maxSkusPerTemplate": 5,
+  "skuGroupingStrategy": "Formats with sku_applicability='all' get all SKUs; specific applicability limits to named SKU"
+}

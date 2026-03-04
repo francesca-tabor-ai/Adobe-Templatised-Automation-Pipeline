@@ -1,0 +1,15 @@
+{
+  "sections": [
+    "templates",
+    "exports",
+    "documentation",
+    "qc_report"
+  ],
+  "requiredFiles": [
+    "template-master-spec.json",
+    "format-tracking.csv",
+    "qc-report.json",
+    "export-names.json",
+    "sacred-flexible-framework.json"
+  ]
+}
