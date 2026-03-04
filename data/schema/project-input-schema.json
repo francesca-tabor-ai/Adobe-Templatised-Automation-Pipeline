@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectInput",
+  "description": "Input manifest for the skills pipeline describing the project to templatise",
+  "type": "object",
+  "required": ["projectName", "brand"],
+  "properties": {
+    "projectName": { "type": "string", "description": "Unique project identifier" },
+    "brand": { "type": "string", "description": "Brand name" },
+    "campaign": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "hasIridescentEffects": { "type": "boolean", "default": false },
+        "markets": { "type": "array", "items": { "type": "string" } },
+        "channels": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "skuCount": { "type": "integer", "default": 1, "minimum": 1 },
+        "formatCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "contacts": {
+      "type": "object",
+      "properties": {
+        "creative_owner": { "type": "object", "properties": { "name": { "type": "string" }, "email": { "type": "string" } } },
+        "production_owner": { "type": "object", "properties": { "name": { "type": "string" }, "email": { "type": "string" } } },
+        "brand_guardian": { "type": "object", "properties": { "name": { "type": "string" }, "email": { "type": "string" } } },
+        "escalation_contact": { "type": "object", "properties": { "name": { "type": "string" }, "email": { "type": "string" } } }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "description": "Paths or metadata about source creative assets",
+      "properties": {
+        "sourceFiles": { "type": "array", "items": { "type": "string" } },
+        "layers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "bounds": { "type": "object" },
+              "visible": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "formats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "dimensions": { "type": "string" },
+          "channel": { "type": "string" },
+          "skuApplicability": { "type": "string" }
+        }
+      }
+    }
+  }
+}

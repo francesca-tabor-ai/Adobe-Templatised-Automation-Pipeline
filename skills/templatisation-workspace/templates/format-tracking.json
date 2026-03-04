@@ -1,0 +1,3 @@
+{
+  "columns": ["format_id", "format_name", "dimensions", "channel", "sku_applicability", "risk_level", "status"]
+}

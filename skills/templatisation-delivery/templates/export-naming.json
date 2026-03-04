@@ -1,0 +1,6 @@
+{
+  "pattern": "{{brand}}_{{campaign}}_{{channel}}_{{format}}_{{variant}}",
+  "separator": "_",
+  "case": "lowercase",
+  "extension": ".psd"
+}

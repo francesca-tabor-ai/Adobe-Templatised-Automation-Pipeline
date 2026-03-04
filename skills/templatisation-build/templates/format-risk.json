@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "condition": "small_format",
+      "level": "High",
+      "reason": "Small format dimensions — text may not fit, requires careful validation"
+    },
+    {
+      "condition": "extreme_aspect_ratio",
+      "level": "Medium",
+      "reason": "Extreme aspect ratio — layout adjustments likely needed"
+    },
+    {
+      "condition": "print_format",
+      "level": "Medium",
+      "reason": "Print format — requires bleed, CMYK, and resolution validation"
+    }
+  ],
+  "levels": ["Low", "Medium", "High"]
+}

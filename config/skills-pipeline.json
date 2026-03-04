@@ -1,0 +1,48 @@
+{
+  "phases": [
+    {
+      "id": "phase-0-intake",
+      "name": "Intake & Workspace",
+      "order": 0,
+      "skills": ["templatisation-comms", "templatisation-workspace"],
+      "sequential": true
+    },
+    {
+      "id": "phase-1-analysis",
+      "name": "Analysis",
+      "order": 1,
+      "skills": ["templatisation-analysis"],
+      "sequential": true
+    },
+    {
+      "id": "phase-2-guardrails",
+      "name": "Design Rules",
+      "order": 2,
+      "skills": ["templatisation-guardrails"],
+      "sequential": true
+    },
+    {
+      "id": "phase-3-build",
+      "name": "Production Build",
+      "order": 3,
+      "skills": ["templatisation-build"],
+      "sequential": true
+    },
+    {
+      "id": "phase-conditional",
+      "name": "Conditional Skills",
+      "order": 3,
+      "skills": ["templatisation-iridescent", "templatisation-multisku"],
+      "sequential": false,
+      "parallel": true,
+      "runDuring": "phase-3-build"
+    },
+    {
+      "id": "phase-4-delivery",
+      "name": "Delivery",
+      "order": 4,
+      "skills": ["templatisation-delivery"],
+      "sequential": true
+    }
+  ]
+}

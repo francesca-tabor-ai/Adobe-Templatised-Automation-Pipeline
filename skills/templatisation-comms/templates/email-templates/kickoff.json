@@ -1,0 +1,7 @@
+{
+  "type": "kickoff",
+  "subject": "Project Kickoff: {{projectName}} — {{campaign.name}}",
+  "body": "Hi {{recipient.name}},\n\nWe are kicking off the templatisation project for {{campaign.name}} under the {{brand}} brand.\n\nProject Details:\n- Markets: {{campaign.markets}}\n- Channels: {{campaign.channels}}\n- Format Count: {{project.formatCount}}\n- SKU Count: {{project.skuCount}}\n\nPlease review the attached brief and confirm your availability for the initial review.\n\nBest regards,\n{{sender.name}}",
+  "recipients": ["creative_owner", "production_owner", "brand_guardian"],
+  "variables": ["projectName", "campaign.name", "brand", "campaign.markets", "campaign.channels", "project.formatCount", "project.skuCount", "recipient.name", "sender.name"]
+}

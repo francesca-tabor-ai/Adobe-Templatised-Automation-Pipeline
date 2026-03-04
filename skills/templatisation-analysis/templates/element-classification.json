@@ -1,0 +1,14 @@
+{
+  "sacred": {
+    "patterns": ["logo", "regulatory", "legal", "product_photography", "disclaimer"],
+    "layerPrefixes": ["SACRED_"]
+  },
+  "flexible": {
+    "patterns": ["headline", "subheadline", "cta", "background", "gradient", "tagline"],
+    "layerPrefixes": ["FLEXIBLE_"]
+  },
+  "sku": {
+    "patterns": ["product", "sku", "variant"],
+    "layerPrefixes": ["SKU_"]
+  }
+}

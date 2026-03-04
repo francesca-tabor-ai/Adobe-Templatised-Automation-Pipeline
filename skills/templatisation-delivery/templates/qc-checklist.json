@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "id": "layer_naming",
+      "name": "Layer Naming Convention",
+      "description": "All layers follow SACRED_/FLEXIBLE_/SKU_ prefix convention",
+      "type": "auto",
+      "required": true
+    },
+    {
+      "id": "smart_object_placement",
+      "name": "Smart Object Placement",
+      "description": "All SKU layers are configured as Smart Objects for programmatic swap",
+      "type": "auto",
+      "required": true
+    },
+    {
+      "id": "format_dimensions",
+      "name": "Format Dimensions",
+      "description": "All formats have dimensions defined and validated",
+      "type": "auto",
+      "required": true
+    },
+    {
+      "id": "sku_behaviour",
+      "name": "SKU Behaviour",
+      "description": "Multi-SKU templates correctly support product variant swaps",
+      "type": "auto",
+      "required": false
+    }
+  ]
+}

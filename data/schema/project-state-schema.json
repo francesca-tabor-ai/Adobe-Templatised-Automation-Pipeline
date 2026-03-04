@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProjectState",
+  "description": "Runtime state for the skills pipeline, supports resume and audit",
+  "type": "object",
+  "required": ["runId", "projectName", "status", "phases", "createdAt"],
+  "properties": {
+    "runId": { "type": "string" },
+    "projectName": { "type": "string" },
+    "campaignId": { "type": ["string", "null"] },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "completed", "failed", "paused"]
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "projectConfig": { "type": "object" },
+    "phases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "completed", "failed", "skipped"]
+          },
+          "startedAt": { "type": ["string", "null"], "format": "date-time" },
+          "completedAt": { "type": ["string", "null"], "format": "date-time" },
+          "skills": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": ["pending", "in_progress", "completed", "failed", "skipped"]
+                },
+                "approvalState": { "type": ["string", "null"] },
+                "startedAt": { "type": ["string", "null"], "format": "date-time" },
+                "completedAt": { "type": ["string", "null"], "format": "date-time" },
+                "reasoningLog": { "type": "array", "items": { "type": "string" } },
+                "errors": { "type": "array", "items": { "type": "string" } },
+                "artifacts": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gateResults": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    }
+  }
+}

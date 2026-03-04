@@ -1,0 +1,21 @@
+{
+  "conventions": {
+    "sacred": {
+      "prefixes": ["SACRED_"],
+      "examples": ["SACRED_LOGO", "SACRED_REGULATORY", "SACRED_DISCLAIMER", "SACRED_PRODUCT_PHOTOGRAPHY"]
+    },
+    "flexible": {
+      "prefixes": ["FLEXIBLE_"],
+      "examples": ["FLEXIBLE_HEADLINE", "FLEXIBLE_SUBHEADLINE", "FLEXIBLE_CTA", "FLEXIBLE_BACKGROUND"]
+    },
+    "sku": {
+      "prefixes": ["SKU_"],
+      "examples": ["SKU_PRODUCT", "SKU_VARIANT", "SKU_PRODUCT_IMAGE"]
+    }
+  },
+  "rules": {
+    "case": "UPPER_SNAKE_CASE",
+    "separator": "_",
+    "maxLength": 50
+  }
+}

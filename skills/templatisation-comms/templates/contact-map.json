@@ -1,0 +1,8 @@
+{
+  "stakeholders": [
+    { "role": "creative_owner", "name": "", "email": "", "escalationTier": 1 },
+    { "role": "production_owner", "name": "", "email": "", "escalationTier": 1 },
+    { "role": "brand_guardian", "name": "", "email": "", "escalationTier": 2 },
+    { "role": "escalation_contact", "name": "", "email": "", "escalationTier": 3 }
+  ]
+}
